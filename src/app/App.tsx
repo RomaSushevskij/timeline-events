@@ -1,9 +1,19 @@
+import { Suspense } from "react";
+
+import { UiLoader } from "@/shared/ui/ui-loader";
+
+import { AppRouter } from "./providers/app-router";
+
 export const App = () => {
   return (
-    <div>
-      <h2 style={{ width: 100 }}>
-        13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды
-      </h2>
-    </div>
+    <Suspense
+      fallback={
+        <div style={{ height: "100dvh" }}>
+          <UiLoader />
+        </div>
+      }
+    >
+      <AppRouter />
+    </Suspense>
   );
 };

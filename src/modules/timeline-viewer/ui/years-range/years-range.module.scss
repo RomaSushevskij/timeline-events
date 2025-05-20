@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  column-gap: 5rem;
+}
+
+.year {
+  font-size: clamp(7rem, 0.8077rem + 9.7436vw, 13rem);
+  line-height: 10rem;
+}

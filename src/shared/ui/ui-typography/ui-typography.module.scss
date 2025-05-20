@@ -1,0 +1,43 @@
+.root {
+  margin: 0;
+}
+
+.h1 {
+  font: var(--font-h1);
+}
+
+.h2 {
+  font: var(--font-h2);
+}
+
+.body1 {
+  font: var(--font-body1);
+}
+
+.body2 {
+  font: var(--font-body2);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.indigo-blue {
+  color: var(--indigo-blue);
+}
+
+.black-blue {
+  color: var(--black-blue-100);
+}
+
+.pink {
+  color: var(--pink);
+}
+
+.weight-400 {
+  font-weight: 400;
+}
+
+.weight-700 {
+  font-weight: 700;
+}

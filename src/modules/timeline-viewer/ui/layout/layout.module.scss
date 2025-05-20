@@ -1,0 +1,76 @@
+.root {
+  position: relative;
+  display: flex;
+  height: 100%;
+  padding-block: 10.625rem 6.5rem;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 30rem;
+
+    width: 100%;
+    height: 0.0625rem;
+
+    background: var(--black-blue-10);
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 0.0625rem;
+    height: 100%;
+
+    background: var(--black-blue-10);
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.title {
+  position: absolute;
+  left: 0;
+
+  align-self: start;
+
+  max-width: 26.875rem;
+  padding-inline-start: 4.875rem;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+
+    width: 0.3125rem;
+    height: 100%;
+
+    background: linear-gradient(180deg, var(--blue) -5%, var(--pink) 85%);
+  }
+}
+
+.carousel {
+  width: max-content;
+  margin-block-start: 1.25rem;
+  margin-inline: auto;
+}
+
+.stepper {
+  margin-block-start: -3rem;
+  padding-left: 5rem;
+}
+
+.years_range {
+  position: absolute;
+  top: 19.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

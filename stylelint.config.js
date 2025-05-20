@@ -17,5 +17,6 @@ module.exports = {
     "no-descending-specificity": null,
     "selector-pseudo-class-no-unknown": null,
     "declaration-block-no-redundant-longhand-properties": null,
+    "scss/operator-no-newline-after": null,
   },
 };

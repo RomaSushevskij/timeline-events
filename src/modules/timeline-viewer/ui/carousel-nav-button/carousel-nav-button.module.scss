@@ -1,0 +1,45 @@
+@mixin transition($what: all, $duration: 0.2s, $ease: ease-in-out) {
+  transition: $what $duration $ease;
+}
+
+.root {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3.125rem;
+  height: 3.125rem;
+  border: 0.0625rem solid var(--black-blue-50);
+  border-radius: 50%;
+
+  background: inherit;
+
+  @include transition;
+
+  &:hover {
+    background: var(--white);
+  }
+}
+
+.icon {
+  stroke: var(--black-blue-100);
+}
+
+.next {
+  rotate: 180deg;
+}
+
+.disabled {
+  border-color: var(--black-blue-30);
+
+  .icon {
+    stroke: var(--black-blue-50);
+  }
+
+  &:hover {
+    cursor: auto;
+    background: inherit;
+  }
+}

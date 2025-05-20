@@ -1,13 +1,54 @@
 @use "../../../node_modules/modern-normalize";
 
+@use "./mixins";
+
 :root {
+  // Colors
+  --bgc: #f4f5f9;
+  --black-blue-100: rgb(66 86 122 / 100%);
+  --black-blue-50: rgb(48 62 88 / 50%);
+  --black-blue-30: #d0d5e0;
+  --black-blue-10: #e1e5ec;
+  --blue: #3877ee;
+  --indigo-blue: #5d5fef;
+  --pink: #ef5da8;
+  --white: #fff;
+
+  // Fonts
+  --font-family: "PT Sans", sans-serif;
+  --font-size-h1: 3.5rem;
+  --font-weight-h1: 700;
+  --line-height-h1: 120%;
+  --font-h1: normal normal var(--font-weight-h1) var(--font-size-h1) / var(--line-height-h1)
+    var(--font-family);
+  --font-size-h2: 1.5625rem;
+  --font-weight-h2: 400;
+  --line-height-h2: 120%;
+  --font-h2: normal normal var(--font-weight-h2) var(--font-size-h2) / var(--line-height-h2)
+    var(--font-family);
+  --font-size-body1: 1.25rem;
+  --font-weight-body1: 400;
+  --line-height-body1: 1.875rem;
+  --font-body1: normal normal var(--font-weight-body1) var(--font-size-body1) /
+    var(--line-height-body1) var(--font-family);
+  --font-size-body2: 0.875rem;
+  --font-weight-body2: 400;
+  --line-height-body2: 100%;
+  --font-body2: normal normal var(--font-weight-body2) var(--font-size-body2) /
+    var(--line-height-body2) var(--font-family);
 }
 
 body {
   font-family: "PT Sans", sans-serif;
+  background: var(--bgc);
 }
 
 p,
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }

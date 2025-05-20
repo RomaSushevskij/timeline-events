@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36.625rem;
+  height: 36.625rem;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+
+  overflow: visible;
+
+  width: 33.125rem;
+  height: 33.125rem;
+
+  fill: none;
+
+  circle {
+    fill: none;
+    stroke: var(--black-blue-30);
+    stroke-width: 0.5;
+  }
+}
