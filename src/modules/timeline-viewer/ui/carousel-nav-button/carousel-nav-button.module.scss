@@ -1,6 +1,4 @@
-@mixin transition($what: all, $duration: 0.2s, $ease: ease-in-out) {
-  transition: $what $duration $ease;
-}
+@use "@/app/styles/mixins" as *;
 
 .root {
   cursor: pointer;
@@ -41,5 +39,20 @@
   &:hover {
     cursor: auto;
     background: inherit;
+  }
+}
+
+@media (width <= 1023px) {
+  .root {
+    width: 1.5625rem;
+    height: 1.5625rem;
+  }
+
+  .icon {
+    width: 0.3rem;
+
+    path {
+      stroke-width: 4px;
+    }
   }
 }

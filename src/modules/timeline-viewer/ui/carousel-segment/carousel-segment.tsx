@@ -18,14 +18,24 @@ export const CarouselSegment = ({
   data: TimeSegment;
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
+  const didMount = useRef(false);
 
   useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      if (isActive) {
+        gsap.set(titleRef.current, { opacity: 1, display: "block" });
+      }
+
+      return;
+    }
+
     if (!titleRef.current) return;
 
     gsap.killTweensOf(titleRef.current);
 
     if (isActive) {
-      gsap.to(titleRef.current, { opacity: 1, display: "block", delay: 0.8 });
+      gsap.to(titleRef.current, { opacity: 1, display: "block", delay: 0.7 });
     } else {
       gsap.to(titleRef.current, { opacity: 0, display: "none" });
     }

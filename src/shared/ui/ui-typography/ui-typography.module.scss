@@ -41,3 +41,15 @@
 .weight-700 {
   font-weight: 700;
 }
+
+.font-primary {
+  font-family: var(--font-family-primary), sans-serif;
+}
+
+.font-secondary {
+  font-family: var(--font-family-secondary), sans-serif;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

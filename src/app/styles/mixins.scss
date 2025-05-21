@@ -1,3 +1,10 @@
 @mixin transition($what: all, $duration: 0.2s, $ease: ease-in-out) {
   transition: $what $duration $ease;
 }
+
+@mixin multi-line-ellipsis($lines) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

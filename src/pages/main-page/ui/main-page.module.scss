@@ -4,3 +4,10 @@
   margin-inline-end: clamp(1rem, -1.0769rem + 9.2308vw, 10rem);
   border-inline: 1px solid var(--black-blue-10);
 }
+
+@media (width <= 1023px) {
+  .root {
+    margin-inline: 0;
+    border-inline: none;
+  }
+}

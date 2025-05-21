@@ -1,40 +1,67 @@
+import { ReactNode, useMemo } from "react";
+
+import { TimeSegment } from "../model/types";
 import { Layout } from "./layout/layout";
-import { Carousel } from "@/modules/timeline-viewer";
-import { TimelineEvent, TimeSegment } from "@/modules/timeline-viewer/model/types";
-import { ReactNode } from "react";
-import { CarouselStepper } from "@/modules/timeline-viewer/ui/carousel-stepper/carousel-stepper";
-import { useCarousel } from "@/modules/timeline-viewer/ui/carousel/use-carousel";
-import { YearsRange } from "@/modules/timeline-viewer/ui/years-range/years-range";
+
+import { CarouselStepper } from "./carousel-stepper/carousel-stepper";
+import { useCarousel } from "./carousel/use-carousel";
+import { YearsRange } from "./years-range/years-range";
+import { EventsSwiper } from "./events-swiper/events-swiper";
+import { Carousel } from "./carousel/carousel";
+import { SegmentsPagination } from "./segments-pagination/segments-pagination";
 
 export const TimelineViewer = ({ data, title }: { title?: ReactNode; data: TimeSegment[] }) => {
-  const { carouselRef, moveToPrevSegment, moveToNextSegment, activeIndex, setActiveIndex } =
-    useCarousel();
+  const {
+    carouselRef,
+    moveToPrevSegment,
+    moveToNextSegment,
+    activeIndex: carouselActiveIndex,
+    setActiveIndex,
+  } = useCarousel();
 
-  const activeSegmentEvents = data[activeIndex].events;
+  const { minYear, maxYear } = useMemo(() => {
+    const activeSegmentEvents = data[carouselActiveIndex].events;
 
-  function getYearRange(events: TimelineEvent[]): { minYear: number; maxYear: number } {
-    const years = events.map((event) => new Date(event.date).getFullYear());
+    const years = activeSegmentEvents.map((event) => new Date(event.date).getFullYear());
     const minYear = Math.min(...years);
     const maxYear = Math.max(...years);
 
     return { minYear, maxYear };
-  }
-
-  const { minYear, maxYear } = getYearRange(activeSegmentEvents);
+  }, [data, carouselActiveIndex]);
 
   return (
     <Layout
       title={title}
-      carousel={<Carousel data={data} ref={carouselRef} onChangeActiveIndex={setActiveIndex} />}
+      carousel={
+        <Carousel
+          data={data}
+          ref={carouselRef}
+          activeIndex={carouselActiveIndex}
+          onChangeActiveIndex={setActiveIndex}
+        />
+      }
       carouselStepper={
         <CarouselStepper
-          currentIndex={activeIndex + 1}
+          currentIndex={carouselActiveIndex + 1}
           itemsCount={data.length}
           onNextBtnClick={moveToNextSegment}
           onPrevBtnClick={moveToPrevSegment}
         />
       }
       yearsRange={<YearsRange minYear={minYear} maxYear={maxYear} />}
+      swiper={
+        <EventsSwiper
+          data={data[carouselActiveIndex].events}
+          segmentTitle={data[carouselActiveIndex].title}
+        />
+      }
+      segmentsPagination={
+        <SegmentsPagination
+          total={data.length}
+          activeIndex={carouselActiveIndex}
+          onClick={setActiveIndex}
+        />
+      }
     />
   );
 };

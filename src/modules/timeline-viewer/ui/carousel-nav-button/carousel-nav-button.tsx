@@ -1,4 +1,5 @@
 import clsx from "clsx";
+
 import ArrowLeft from "@/shared/assets/icons/arrow-left.svg";
 
 import s from "./carousel-nav-button.module.scss";

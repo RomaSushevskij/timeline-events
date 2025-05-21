@@ -19,9 +19,11 @@ export const Carousel = ({
   ref,
   data,
   onChangeActiveIndex,
+  activeIndex,
 }: {
   data: TimeSegment[];
   ref?: Ref<TCarouselMethods>;
+  activeIndex: number;
   onChangeActiveIndex?: (index: number) => void;
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -29,7 +31,6 @@ export const Carousel = ({
   const svgRef = useRef<SVGSVGElement>(null);
   const tracker = useRef({ item: 0 });
   const tl = useRef<gsap.core.Timeline>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const itemsCount = data.length;
   const itemsOffset = 90 / 360 - 360 / itemsCount / 2 / 360;
@@ -95,7 +96,6 @@ export const Carousel = ({
     const newIndex = tracker.current.item;
     tl.current!.progress(currentProgress);
 
-    setActiveIndex(newIndex);
     onChangeActiveIndex?.(newIndex);
 
     gsap.to(tl.current!, {

@@ -28,34 +28,6 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
     exclude: /node_modules/,
   };
 
-  const scssLoader: webpack.RuleSetRule = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-      {
-        loader: "css-loader",
-        options: {
-          url: {
-            filter: (url: string) => {
-              if (url.includes(".ttf")) {
-                return false;
-              }
-
-              return true;
-            },
-          },
-          modules: {
-            auto: /\.module\.(scss|sass|css)$/i,
-            getLocalIdent,
-            namedExport: false,
-            exportLocalsConvention: "asIs",
-          },
-        },
-      },
-      "sass-loader",
-    ],
-  };
-
   const fontLoader: webpack.RuleSetRule = {
     test: /\.(woff|woff2|eot|ttf|otf)$/i,
     type: "asset/resource",
@@ -75,5 +47,49 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
     ],
   };
 
-  return [tsLoader, scssLoader, fontLoader, svgLoader, fileLoader];
+  const cssModuleLoader: webpack.RuleSetRule = {
+    test: /\.module\.s[ac]ss$/i,
+    use: [
+      isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+      {
+        loader: "css-loader",
+        options: {
+          modules: {
+            getLocalIdent,
+            namedExport: false,
+            exportLocalsConvention: "asIs",
+          },
+        },
+      },
+      "sass-loader",
+    ],
+  };
+
+  const globalScssLoader: webpack.RuleSetRule = {
+    test: /\.s[ac]ss$/i,
+    exclude: /\.module\.s[ac]ss$/i,
+    use: [
+      isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+      "css-loader", // no modules
+      "sass-loader",
+    ],
+  };
+
+  const globalCssLoader: webpack.RuleSetRule = {
+    test: /\.css$/i,
+    use: [
+      isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+      "css-loader", // no modules
+    ],
+  };
+
+  return [
+    tsLoader,
+    cssModuleLoader,
+    globalScssLoader,
+    globalCssLoader,
+    fontLoader,
+    svgLoader,
+    fileLoader,
+  ];
 };

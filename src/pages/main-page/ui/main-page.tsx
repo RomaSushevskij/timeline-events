@@ -1,6 +1,7 @@
-import s from "./main-page.module.scss";
 import { TimelineViewer } from "@/modules/timeline-viewer";
-import { mockSegments } from "@/modules/timeline-viewer/model/data";
+
+import s from "./main-page.module.scss";
+import { mockSegments } from "../api/data";
 
 export const MainPage = () => {
   return (
