@@ -40,11 +40,13 @@ export const EventsSwiper = ({
       didMount.current = true;
       setInternalData(data);
       setInternalSegmentTitle(segmentTitle);
-
       return;
     }
 
     if (!containerRef.current) return;
+
+    // Убиваем любые активные анимации на потомках
+    gsap.killTweensOf(containerRef.current.children);
 
     const tl = gsap.timeline({
       defaults: { duration: 0.4, ease: "power2.out" },
@@ -54,10 +56,15 @@ export const EventsSwiper = ({
       opacity: 0,
       stagger: 0.05,
       onComplete: () => {
+        // Меняем данные только после завершения анимации
         setInternalData(data);
         setInternalSegmentTitle(segmentTitle);
       },
     });
+
+    return () => {
+      tl.kill();
+    };
   }, [data, segmentTitle]);
 
   useLayoutEffect(() => {
